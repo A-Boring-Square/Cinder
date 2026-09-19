@@ -162,10 +162,18 @@ bool _CinderMoveCursor(CinderTerminal *terminal, uint16_t x, uint16_t y, size_t 
 
 bool _CinderSetTrueColor(CinderTerminal *terminal, CinderTrueColor color, size_t *next);
 
-
 bool _CinderSetColor256(CinderTerminal *terminal, CinderColor256 color, size_t *next);
 
 bool _CinderResetColor(CinderTerminal *terminal, size_t *next);
+
+bool _CinderDrawText(
+    CinderTerminal *terminal,
+    uint16_t x,
+    uint16_t y,
+    const char *text,
+    uint16_t *next_x,
+    uint16_t *next_y
+);
 
 #if defined(CINDER_IMPL) || defined(CINDER_IMPLEMENTATION)
 
@@ -411,7 +419,7 @@ bool _CinderResetColor(CinderTerminal *terminal, size_t *next) {
 #endif
 }
 
-static bool _CinderDrawText(
+bool _CinderDrawText(
     CinderTerminal *terminal,
     uint16_t x,
     uint16_t y,
